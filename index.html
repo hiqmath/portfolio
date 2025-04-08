@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hiqumathulla S  WordPress Developer</title>
+    <title>Hiqumathulla S WordPress Developer</title>
     <style>
       * {
         margin: 0;
@@ -412,37 +412,90 @@
         resize: vertical;
       }
 
-      /* Footer */
-      footer {
-        padding: 30px 0;
+      .footer-fancy {
+        background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+        padding: 3rem 1rem;
         text-align: center;
-        background-color: #0a0a0a;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-      }
-
-      .social-links {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-      }
-
-      .social-link {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.05);
-        margin: 0 10px;
         color: #fff;
-        text-decoration: none;
-        transition: all 0.3s ease;
+        font-family: "Poppins", sans-serif;
+        position: relative;
+        overflow: hidden;
       }
 
-      .social-link:hover {
-        background: linear-gradient(45deg, #f06, #06f);
-        transform: translateY(-5px);
+      /* Wrapper */
+      .footer-wrapper {
+        max-width: 960px;
+        margin: auto;
+      }
+
+      /* Icon Container */
+      .glow-icons {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Icon Buttons */
+      .glow-icon {
+        font-size: 1.8rem;
+        color: #fff;
+        width: 60px;
+        height: 60px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        transition: all 0.35s ease;
+        position: relative;
+      }
+
+      /* Gradient Glow Effect on Hover */
+      .glow-icon:hover {
+        transform: translateY(-6px) scale(1.1);
+        background: linear-gradient(
+          45deg,
+          #f09433,
+          #e6683c,
+          #dc2743,
+          #cc2366,
+          #bc1888
+        );
+        box-shadow: 0 0 15px #f09433, 0 0 25px #e6683c, 0 0 35px #bc1888;
+        color: white;
+      }
+
+      /* Specific LinkedIn Hover */
+      .glow-icon:nth-child(2):hover {
+        background: linear-gradient(45deg, #0077b5, #005983);
+        box-shadow: 0 0 15px #0077b5, 0 0 25px #005983;
+      }
+
+      /* Footer Text */
+      .footer-credit {
+        font-size: 1rem;
+        color: #e0e0e0;
+        letter-spacing: 0.5px;
+        margin-top: 1rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 500px) {
+        .glow-icons {
+          gap: 1.2rem;
+        }
+
+        .glow-icon {
+          width: 50px;
+          height: 50px;
+          font-size: 1.4rem;
+        }
+
+        .footer-credit {
+          font-size: 0.9rem;
+        }
       }
 
       /* Animations */
@@ -663,13 +716,22 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="social-links">
-          <a href="#" class="social-link">IG</a>
-          <a href="#" class="social-link">LI</a>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <footer class="footer-fancy">
+      <div class="footer-wrapper">
+        <div class="glow-icons">
+          <a href="#" class="glow-icon" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="glow-icon" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
         </div>
-        <p>© 2025 Hiqumathulla S. All Rights Reserved.</p>
+        <p class="footer-credit">© 2025 Hiqumathulla S. All Rights Reserved.</p>
       </div>
     </footer>
 
