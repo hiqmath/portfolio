@@ -1,0 +1,722 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hiqumathulla S - WordPress Developer</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #0a0a0a;
+        color: #fff;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header Styles */
+      header {
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .header-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .profile-image {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid transparent;
+        background: linear-gradient(45deg, #f06, #9f6, #06f, #f06) border-box;
+        background-size: 400% 400%;
+        animation: gradient 10s ease infinite;
+        margin-bottom: 25px;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(255, 0, 102, 0.3);
+      }
+
+      .profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .profile-image::after {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, #f06, #9f6, #06f, #f06);
+        background-size: 400% 400%;
+        z-index: -1;
+        animation: gradient 10s ease infinite;
+        opacity: 0.5;
+      }
+
+      .header-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        background: linear-gradient(45deg, #f06, #9f6, #06f, #f06);
+        background-size: 400% 400%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: gradient 10s ease infinite;
+      }
+
+      .header-content p {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        color: #ccc;
+      }
+
+      .header-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 28px;
+        background: linear-gradient(45deg, #f06, #06f);
+        border-radius: 50px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #06f, #f06);
+        transition: all 0.3s ease;
+        opacity: 0;
+      }
+
+      .btn:hover::before {
+        opacity: 1;
+      }
+
+      .btn.outline {
+        background: transparent;
+        border: 2px solid #f06;
+      }
+
+      .btn.outline::before {
+        background: linear-gradient(45deg, #f06, #06f);
+      }
+
+      .btn span {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Particle Effects */
+      .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.3;
+        animation: float 15s linear infinite;
+      }
+
+      /* Resume Section */
+      .resume {
+        padding: 100px 0;
+        position: relative;
+        background-color: #0d0d0d;
+      }
+
+      .resume-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+      }
+
+      .resume-section {
+        background-color: rgba(255, 255, 255, 0.03);
+        border-radius: 15px;
+        padding: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .resume-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 0, 102, 0.2);
+      }
+
+      .resume-section h3 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        background: linear-gradient(45deg, #f06, #06f);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .resume-item {
+        margin-bottom: 25px;
+        position: relative;
+        padding-left: 20px;
+        border-left: 2px solid rgba(255, 0, 102, 0.3);
+      }
+
+      .resume-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .resume-item h4 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+      }
+
+      .resume-item h5 {
+        font-size: 0.9rem;
+        color: #aaa;
+        margin-bottom: 10px;
+        font-weight: normal;
+      }
+
+      .resume-item p {
+        font-size: 0.9rem;
+        color: #ddd;
+        line-height: 1.6;
+      }
+
+      .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .skill-tag {
+        background: linear-gradient(
+          45deg,
+          rgba(255, 0, 102, 0.2),
+          rgba(0, 102, 255, 0.2)
+        );
+        border: 1px solid rgba(255, 0, 102, 0.3);
+        border-radius: 50px;
+        padding: 5px 15px;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
+
+      .skill-tag:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(255, 0, 102, 0.3);
+      }
+
+      .download-resume {
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      /* Services Section */
+      .services {
+        padding: 100px 0;
+        background-color: #111;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+        font-size: 2.5rem;
+        background: linear-gradient(45deg, #f06, #9f6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .service-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 128, 128, 0.3);
+      }
+
+      .service-icon {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        background: linear-gradient(45deg, #f06, #06f);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .service-card h3 {
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+      }
+
+      .service-card p {
+        color: #aaa;
+        font-size: 0.9rem;
+      }
+
+      /* Portfolio Section */
+      .portfolio {
+        padding: 100px 0;
+        position: relative;
+      }
+
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .portfolio-item {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        height: 250px;
+      }
+
+      .portfolio-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .portfolio-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .portfolio-item-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          rgba(255, 0, 102, 0.8),
+          rgba(0, 102, 255, 0.8)
+        );
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .portfolio-item:hover .portfolio-item-overlay {
+        opacity: 1;
+      }
+
+      .portfolio-item-overlay h4 {
+        font-size: 1.2rem;
+        text-align: center;
+        padding: 0 15px;
+      }
+
+      /* Contact Section */
+      .contact {
+        padding: 100px 0;
+        background-color: #111;
+        position: relative;
+      }
+
+      .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 40px;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 12px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        color: #fff;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-control:focus {
+        border-color: #f06;
+        outline: none;
+      }
+
+      textarea.form-control {
+        min-height: 150px;
+        resize: vertical;
+      }
+
+      /* Footer */
+      footer {
+        padding: 30px 0;
+        text-align: center;
+        background-color: #0a0a0a;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .social-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.05);
+        margin: 0 10px;
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .social-link:hover {
+        background: linear-gradient(45deg, #f06, #06f);
+        transform: translateY(-5px);
+      }
+
+      /* Animations */
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) translateX(0);
+          opacity: 0;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          transform: translateY(-1000px) translateX(200px);
+          opacity: 0;
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .header-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .header-content p {
+          font-size: 1.2rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .profile-image {
+          width: 150px;
+          height: 150px;
+        }
+
+        .header-buttons {
+          flex-direction: column;
+          gap: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <div class="particles" id="particles"></div>
+      <div class="header-content">
+        <div class="profile-image">
+          <img src="hiq.jpg" alt="Hiqumathulla S" />
+        </div>
+        <h1>Hiqumathulla S</h1>
+        <p>WordPress Developer</p>
+        <div class="header-buttons">
+          <a href="#portfolio" class="btn"><span>View My Work</span></a>
+          <a href="#resume" class="btn outline"><span>My Resume</span></a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Resume Section -->
+    <section class="resume" id="resume">
+      <div class="container">
+        <h2 class="section-title">My Resume</h2>
+        <div class="resume-container">
+          <div class="resume-section">
+            <h3>Experience</h3>
+            <div class="resume-item">
+              <h4>WordPress Developer</h4>
+              <h5></h5>
+              <p>
+                Lead WordPress developer responsible for custom theme
+                development, plugin integration, and performance optimization
+                for high-traffic websites.
+              </p>
+            </div>
+            <div class="resume-item">
+              <h4>Web Developer</h4>
+              <h5></h5>
+              <p>
+                Developed responsive websites and implemented various CMS
+                platforms including WordPress, Joomla, and custom solutions.
+              </p>
+            </div>
+            <div class="resume-item"></div>
+          </div>
+
+          <div class="resume-section">
+            <h3>Education</h3>
+            <div class="resume-item">
+              <h4>Bachelor of Computer Science</h4>
+              <h5>ENATHI RAJAPPA ARTS AND SCIENCE COLLEGE | 2019 - 2022</h5>
+            </div>
+            <div class="resume-item">
+              <h4>Master of COMPUTER SCIENCE</h4>
+              <h5>BISHOP HEBER COLLEGE | 2022 - 2024</h5>
+            </div>
+            <div class="resume-item"></div>
+          </div>
+
+          <div class="resume-section">
+            <h3>Skills</h3>
+            <div class="resume-item">
+              <h4>Technical Skills</h4>
+              <div class="skills-list">
+                <div class="skill-tag">WordPress</div>
+                <div class="skill-tag">PHP</div>
+                <div class="skill-tag">JavaScript</div>
+                <div class="skill-tag">HTML5</div>
+                <div class="skill-tag">CSS3</div>
+                <div class="skill-tag">MySQL</div>
+                <div class="skill-tag">WooCommerce</div>
+                <div class="skill-tag">Elementor</div>
+              </div>
+            </div>
+
+            <div class="resume-item">
+              <h4>Soft Skills</h4>
+              <div class="skills-list">
+                <div class="skill-tag">Communication</div>
+                <div class="skill-tag">Adaptability</div>
+                <div class="skill-tag">Problem Solving</div>
+                <div class="skill-tag">Time Management</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="download-resume">
+          <a href="Professional CV Resume.pdf" class="btn"
+            ><span>Download Full Resume</span></a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+      <div class="container">
+        <h2 class="section-title">My Services</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">🖥️</div>
+            <h3>WordPress Development</h3>
+            <p>
+              Custom WordPress websites tailored to your specific needs with
+              responsive design and seamless functionality.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🎨</div>
+            <h3>Flyer Design</h3>
+            <p>
+              Eye-catching flyer designs that combine creativity with effective
+              marketing strategies to promote your brand.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">⚙️</div>
+            <h3>Web Maintenance</h3>
+            <p>
+              Regular updates, security checks, and performance optimization to
+              keep your website running smoothly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-form">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Your Name" />
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Your Email" />
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Subject" />
+          </div>
+          <div class="form-group">
+            <textarea
+              class="form-control"
+              placeholder="Your Message"
+            ></textarea>
+          </div>
+          <a href="#" class="btn"><span>Send Message</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="social-links">
+          <a href="#" class="social-link">IG</a>
+          <a href="#" class="social-link">LI</a>
+        </div>
+        <p>© 2025 Hiqumathulla S. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Create animated particles
+      function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        const colors = ['#f06', '#9f6', '#06f', '#f0f'];
+
+        for (let i = 0; i < 50; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+
+          // Random properties
+          const size = Math.random() * 20 + 5;
+          const posX = Math.random() * window.innerWidth;
+          const posY = Math.random() * window.innerHeight + window.innerHeight;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const delay = Math.random() * 15;
+          const duration = Math.random() * 20 + 10;
+
+          // Apply styles
+          particle.style.width = ${size}px;
+          particle.style.height = ${size}px;
+          particle.style.left = ${posX}px;
+          particle.style.top = ${posY}px;
+          particle.style.backgroundColor = color;
+          particle.style.animationDelay = ${delay}s;
+          particle.style.animationDuration = ${duration}s;
+
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // Run on load
+      window.addEventListener('load', createParticles);
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
